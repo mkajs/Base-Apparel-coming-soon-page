@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="src/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="src/style.scss" />
+    <script type="module" src="src/script.js"></script>
+
+    <title>Frontend Mentor | Base Apparel coming soon page</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo"><img src="src/images/logo.svg" alt="logo" /></div>
+      <picture>
+        <source
+          srcset="src/images/hero-desktop.jpg"
+          media="(min-width: 600px)"
+        />
+        <img
+          src="src/images/hero-mobile.jpg"
+          alt="a girl with smile"
+          class="hero-image"
+        />
+      </picture>
+
+      <div class="content">
+        <h1>به زودی <strong>اینجا خواهیم بود</strong></h1>
+        <p>
+          سلام به خریداران همکار! ما در حال حاضر در حال ساخت فروشگاه مد جدید خود
+          هستیم. ایمیل خود را در زیر اضافه کنید تا از اطلاعیه ها و معاملات راه
+          اندازی ما مطلع شوید.
+        </p>
+        <div class="form">
+          <input class="email" type="email" placeholder="آدرس ایمیل" />
+          <div class="error-icon error-icon--hidden">
+            <img src="src/images/icon-error.svg" alt="error icon" />
+          </div>
+          <div class="button">
+            <img src="src/images/icon-arrow.svg" alt="arrow icon" />
+          </div>
+        </div>
+        <p class="error-message error-message--hidden">
+          لطفا ایمیل معتبر وارد کنید.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

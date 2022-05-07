@@ -1,0 +1,247 @@
+/// Variables
+
+/// Primary
+
+$Desaturated-Red: hsl(0, 36%, 70%);
+$Soft-Red: hsl(0, 93%, 68%);
+
+/// Neutral
+
+$Dark-Grayish-Red: #413a3a;
+
+/// Gradients
+
+$Gradient-1: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+$Gradient-2: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+
+//////////////////////////////////////////////////////////////
+///Responsive function
+@mixin respond($breakpoint) {
+  @if $breakpoint == desktop {
+    @media only screen and (min-width: 56.25em) {
+      @content;
+    } //900px
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+/// Resets
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  transition: all 0.3s;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 50%; // 1rem = 8px, 8px/16px = 50%
+
+  @include respond(desktop) {
+    //  600 < width?
+    font-size: 62.5%; //1 rem = 10px, 10/16 = 62.5%
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+/// Typography
+
+@font-face {
+  font-family: "iran-sans";
+  src: url("/src/fonts/IRANSansWeb.ttf");
+}
+@font-face {
+  font-family: "IRANSansWeb(FaNum)";
+  src: url("/src/fonts/IRANSansWeb\(FaNum\).ttf");
+}
+
+body {
+  font-family: "iran-sans", sans-serif;
+  color: $Desaturated-Red;
+
+  text-decoration: none;
+  font-size: 1.6rem;
+  line-height: 3rem;
+  font-weight: 400;
+
+  @include respond(desktop) {
+    background-image: url("/src/images/bg-pattern-desktop.svg");
+  }
+  @include respond(desktop) {
+    position: relative;
+  }
+}
+
+//////////main styles
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  @include respond(desktop) {
+    grid-template-columns: repeat(2, minmax(33rem, 66rem));
+    grid-template-rows: 15rem auto;
+    justify-content: start;
+    max-width: 132rem;
+    margin: 0 auto;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    width: 31rem;
+    margin: 2.3rem auto;
+    @include respond(desktop) {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+
+    img {
+      height: 4rem;
+    }
+  }
+  .hero-image {
+    width: 100%;
+    @include respond(desktop) {
+      grid-column: 2/3;
+      grid-row: 1/-1;
+
+      width: auto;
+      height: 100vh;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 31rem;
+    margin: 2.7rem auto;
+
+    @include respond(desktop) {
+      grid-column: 1/2;
+      grid-row: 2/3;
+      text-align: start;
+      align-items: flex-start;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 4.8rem;
+      font-weight: 100;
+      line-height: 6rem;
+      margin-bottom: 3rem;
+      @include respond(desktop) {
+        text-align: start;
+      }
+
+      strong {
+        display: block;
+        color: $Dark-Grayish-Red;
+        font-weight: 700;
+        font-size: 3.8rem;
+      }
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 3rem;
+      @include respond(desktop) {
+        text-align: start;
+        width: 45rem;
+      }
+    }
+    .form {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 4.7rem;
+      border-radius: 5rem;
+      border: 2px solid $Desaturated-Red;
+      padding-right: 2rem;
+      margin-bottom: 1rem;
+
+      &--error {
+        border: 2px solid $Soft-Red;
+      }
+      @include respond(desktop) {
+        width: 38rem;
+      }
+
+      .email {
+        border: none;
+        outline: none;
+        margin-left: auto;
+        font-family: "iran-sans", sans-serif;
+        color: $Dark-Grayish-Red;
+
+        font-size: 1.6rem;
+        line-height: 3rem;
+        font-weight: 400;
+
+        &::placeholder {
+          font-family: "iran-sans", sans-serif;
+          color: $Desaturated-Red;
+
+          font-size: 1.6rem;
+          line-height: 3rem;
+          font-weight: 400;
+        }
+      }
+
+      .error-icon {
+        display: flex;
+        align-items: center;
+        &--hidden {
+          display: none;
+        }
+        img {
+          width: 2.5rem;
+        }
+      }
+
+      .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100% + 4px);
+        width: 6rem;
+        background: $Gradient-2;
+        border-radius: 4rem;
+        box-shadow: 0 1rem 2rem rgba($color: $Soft-Red, $alpha: 0.3);
+        transform: translateX(-1rem);
+        cursor: pointer;
+        img {
+          height: 2rem;
+          transform: rotate(180deg);
+        }
+
+        &:hover,
+        :active {
+          background-color: $Gradient-1;
+          transform: translateX(-2.5rem);
+          img {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    .error-message {
+      opacity: 1;
+      margin-right: 2rem;
+
+      &--hidden {
+        opacity: 0;
+      }
+    }
+  }
+}
